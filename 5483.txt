@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int longestAwesome(string s) {
+        unordered_map<char,int> M1;
+        unordered_map<char,int> M2;
+        int sum = 0;
+        for (int i = 0; i < s.size(); i++) M1[s[i]]++;
+        vector<int> arr;
+        for (auto it : M1) if (it.second%2) M2[it.first] = 1;
+        for (int i = 0; i < s.size(); i++)
+        {
+            if (M2.find(s[i]) != M2.end()) arr.push_back(i);
+        }
+        int res = 0;
+        if (arr.size() < 2) return s.size();
+        for (int i = 1; i < arr.size(); i++)
+        {
+            res = max(res,arr[i]-arr[i-1]);
+        }
+        return res;
+    }
+};
