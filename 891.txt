@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int sumSubseqWidths(vector<int>& A) {
+        if (A.size() == 1) return 0;
+        // 结果与数字顺序无关所以可以按照从大到小排序
+        sort(A.begin(),A.end());
+        vector<long long> dp(A.size(),0);
+        for (int i = 1; i < A.size(); i++)
+        {
+            dp[i] = dp[i-1];
+            for (int k = i-1; k >= 0; k--)
+            {
+                long long a = 1;
+                int count = k;
+                while (count)
+                {
+                    a = (a * 2) % 1000000007;
+                    count--;
+                }
+                long long b = (A[i] - A[i-1-k]) % 1000000007;
+                a = (a * b) % 1000000007;
+                dp[i] = (dp[i] + a) % 1000000007;
+            }
+        }
+        return dp[A.size()-1];
+    }
+};
