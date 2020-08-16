@@ -10,6 +10,7 @@ public:
             int sum = 0;
 	    for (int j = 0; j < i; j++)
 	    {
+	        long long delt = (long long)A[i] - (long long)A[j];
                 if (dp[j].find(A[i]-A[j]) != dp[j].end())
 		{
                     sum += dp[j][A[i]-A[j]];
