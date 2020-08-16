@@ -3,7 +3,7 @@ public:
     int numberOfArithmeticSlices(vector<int>& A) {
 	int len = A.size();
 	if (len < 3) return 0;
-	vector<map<long long,int>> dp(len);
+	vector<unordered_map<long long,int>> dp(len);
 	int res = 0;
 	for (int i = 1; i < len; i++)
 	{
