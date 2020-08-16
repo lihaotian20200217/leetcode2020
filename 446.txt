@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int numberOfArithmeticSlices(vector<int>& A) {
+	int len = A.size();
+	if (len < 3) return len;
+	vector<map<long long,int>> dp(len);
+	int res = 0;
+	for (int i = 1; i < len; i++)
+	{
+            int sum = 0;
+	    for (int j = 0; j < i; j++)
+	    {
+                if (dp[j].find(A[i]-A[j]) != dp[j].end())
+		{
+                    sum += dp[j][A[i]-A[j]];
+		}
+		dp[i][A[i]-A[j]] = sum + 1;
+	    }
+	    res += sum;
+	}
+	return res;
+    }
+}
