@@ -14,7 +14,7 @@ public:
 		{
                     sum += dp[j][A[i]-A[j]];
 		}
-		dp[i][A[i]-A[j]] = dp[j][A[i]-A[j]] + 1;
+		dp[i][A[i]-A[j]] += dp[j][A[i]-A[j]] + 1;
 	    }
 	    res += sum;
 	}
