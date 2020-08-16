@@ -7,17 +7,21 @@ public:
 	int res = 0;
 	for (int i = 1; i < len; i++)
 	{
-            int sum = 0;
+            //int sum = 0;
 	    for (int j = 0; j < i; j++)
 	    {
 	        long long delt = (long long)A[i] - (long long)A[j];
+		int sum = 0;
                 if (dp[j].find(delt) != dp[j].end())
 		{
-                    sum += dp[j][delt];
+                    //sum += dp[j][delt];
+		    sum = dp[j][delt];
 		}
-		dp[i][delt]] += dp[j][delt] + 1;
+		//dp[i][delt] += dp[j][delt] + 1;
+		dp[i][delt] += sum + 1;
+		res += sum;
 	    }
-	    res += sum;
+	    //res += sum;
 	}
 	return res;
     }
