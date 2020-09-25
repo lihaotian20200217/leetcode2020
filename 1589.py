@@ -1,10 +1,10 @@
 class Solution:
     def maxSumRangeQuery(self, nums: List[int], requests: List[List[int]]) -> int:
-        d = []
-        f = []
-        for i in range(len(nums)+1):
-            d.append(0)
-            f.append(0)
+        d = [ 0 for i in range(len(nums)+1) ]
+        f = [ 0 for i in range(len(nums)+1) ]
+        #for i in range(len(nums)+1):
+            #d.append(0)
+            #f.append(0)
         for i in range(len(requests)):
             d[requests[i][0]] += 1
             d[requests[i][1]+1] -= 1
