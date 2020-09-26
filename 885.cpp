@@ -5,16 +5,16 @@ class Solution {
 public:
     vector<vector<int>> spiralMatrixIII(int R, int C, int r0, int c0) {
         int len = R * C;
-        vector<vector<int>> res;
-        int step = 2, i = r0, j = c0, idx = 0;
-        
-        while (res.size() < len)
+        vector<vector<int>> res(len,vector<int>(2,-1));
+        int step = 2, i = r0, j = c0, idx = 0, id = 0;
+        while (res[len-1][0] == -1)
+        //while (res.size() < len)
         {
             while (idx < step)
             {
                 if (i>=0&&i<R&&j>=0&&j<C)
                 {
-                    res.push_back({i,j});
+                    res[id][0] = i, res[id][1] = j, id++;//res.push_back({i,j});
                 }
                 idx++;
                 j++;
@@ -25,7 +25,7 @@ public:
             {
                 if (i>=0&&i<R&&j>=0&&j<C)
                 {
-                    res.push_back({i,j});
+                    res[id][0] = i, res[id][1] = j, id++;//res.push_back({i,j});
                 }
                 idx++;
                 i++;
@@ -36,7 +36,7 @@ public:
             {
                 if (i>=0&&i<R&&j>=0&&j<C)
                 {
-                    res.push_back({i,j});
+                    res[id][0] = i, res[id][1] = j, id++;//res.push_back({i,j});
                 }
                 idx++;
                 j--;
@@ -47,7 +47,7 @@ public:
             {
                 if (i>=0&&i<R&&j>=0&&j<C)
                 {
-                    res.push_back({i,j});
+                    res[id][0] = i, res[id][1] = j, id++;//res.push_back({i,j});
                 }
                 idx++;
                 i--;
