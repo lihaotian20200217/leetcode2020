@@ -7,6 +7,7 @@ public:
         int len = R * C;
         vector<vector<int>> res;
         int step = 2, i = r0, j = c0, idx = 0;
+        
         while (res.size() < len)
         {
             while (idx < step)
@@ -17,6 +18,7 @@ public:
                 }
                 idx++;
                 j++;
+
             }
             idx = 1;i++;j--;
             while (idx < step)
@@ -27,6 +29,7 @@ public:
                 }
                 idx++;
                 i++;
+
             }
             step++;idx = 1;i--;j--;
             while (idx < step)
@@ -37,6 +40,7 @@ public:
                 }
                 idx++;
                 j--;
+
             }
             idx = 1;i--;j++;
             while (idx < step)
@@ -47,6 +51,7 @@ public:
                 }
                 idx++;
                 i--;
+
             }
             step++;idx = 1;i++;j++;
         }
