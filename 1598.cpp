@@ -8,19 +8,19 @@ using namespace std;
 class Solution {
 public:
     int minOperations(vector<string>& logs) {
-        stack<bool> stk;
+        int count = 0; //stack<bool> stk;
         for (int i = 0; i < logs.size(); i++)
         {
             if (logs[i] == "../")
             {
-                if (stk.size() != 0) stk.pop();
+                if (count > 0) count--;//if (stk.size() != 0) stk.pop();
             }
             else if (logs[i] != "./")
             {
-                stk.push(true);
+                count++;//stk.push(true);
             }
         }
-        return stk.size();
+        return count;//stk.size();
     }
 };
 
