@@ -10,8 +10,8 @@ public:
     int maxUncrossedLines(vector<int>& A, vector<int>& B) {
         int col = A.size(), row = B.size();
         vector<vector<int>> dp(row+1,vector<int>(col+1,0));
-        unordered_map<int,int> a;
-        unordered_map<int,int> b;
+        //unordered_map<int,int> a;
+        //unordered_map<int,int> b;
         for (int i = 1; i <= row; i++)
         {
             /*
@@ -31,7 +31,7 @@ public:
             a.clear();
             */
             for (int j = 1; j <= col; j++)
-            {
+            {   // 保证这两个位置的数都没用过
                 if (A[j-1] == B[i-1]) dp[i][j] = dp[i-1][j-1] + 1;
                 else
                 {
@@ -39,14 +39,14 @@ public:
                 }
             }
         }
-        for (int i = 0; i < dp.size(); i++)
+        /*for (int i = 0; i < dp.size(); i++)
         {
             for (int j = 0; j < dp[0].size(); j++)
             {
                 cout << dp[i][j] << " ";
             }
             cout << endl;
-        }
+        }*/
         return dp[row][col];
     }
 };
