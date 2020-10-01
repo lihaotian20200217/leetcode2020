@@ -9,7 +9,8 @@ class Solution
 {
     public:
         vector<vector<int>> res;
-        void dfs(unordered_map<int,vector<int>>& m, int id, vector<int>& arr, int end)
+        vector<int> arr;
+        void dfs(unordered_map<int,vector<int>>& m, int id, int end)
         {
             if (id == end)
             {
@@ -21,7 +22,7 @@ class Solution
                 arr.push_back(id);
                 for (int k = 0; k < m[id].size(); k++)
                 {
-                    dfs(m,m[id][k],arr,end);
+                    dfs(m,m[id][k],end);
                     arr.pop_back();
                 }
                 // arr.pop_back();
@@ -38,7 +39,7 @@ class Solution
                 }
             }
             vector<int> arr;
-            dfs(m,0,arr,graph.size()-1);
+            dfs(m,0,graph.size()-1);
             return res;
         }
 };
