@@ -9,14 +9,15 @@ class Solution {
 public:
     int specialArray(vector<int>& nums) {
         sort(nums.begin(),nums.end());
-        int count = 0;
+        int count = 0, id = 0;
         for (int i = 0; i <= nums.size(); i++)
         {
             count = 0;
 
-            for (int j = 0; j < nums.size(); j++)
+            for (int j = id; j < nums.size(); j++)
             {
                 if (nums[j] >= i) count++;
+                else id++;
             }
             
             if (count == i) return i;
