@@ -17,7 +17,7 @@ struct TreeNode {
 class Solution {
 public:
     bool isEvenOddTree(TreeNode* root) {
-        vector<vector<int>> arr;
+        int flag = 1;//vector<vector<int>> arr;
         queue<TreeNode*> Q;
         Q.push(root);
         while (Q.size())
@@ -32,9 +32,24 @@ public:
                 if (ptr->left) Q.push(ptr->left);
                 if (ptr->right) Q.push(ptr->right);
             }
-            arr.push_back(h);
+            //arr.push_back(h);
+            if (flag == 1)
+            {
+                for (int j = 0; j < h.size(); j++)
+                {
+                    if (h[j]%2 == 0 || (j>0 && h[j] <= h[j-1])) return false;
+                }
+            }
+            else
+            {
+                for (int j = 0; j < h.size(); j++)
+                {
+                    if (h[j]%2 || (j>0 && h[j] >= h[j-1])) return false;
+                }
+            }
+            flag = -flag;
         }
-        for (int i = 0; i < arr.size(); i++)
+        /*for (int i = 0; i < arr.size(); i++)
         {
             if (i%2 == 0)
             {
@@ -50,7 +65,7 @@ public:
                     if (arr[i][j]%2 || (j>0 && arr[i][j] >= arr[i][j-1])) return false;
                 }
             }
-        }
+        }*/
         return true;
     }
 };
