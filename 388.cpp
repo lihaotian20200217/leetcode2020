@@ -10,30 +10,19 @@ public:
     int res = 0;
     int lengthLongestPath(string input) {
         input += '\n';
-        stack<pair<int,int>> sk;
-        int i = 0, tab = 0, cur = 0;
+        stack<vector<int>> stk;
+        int cur = 0, i = 0, count = 0;
         while (i < input.size())
         {
             int end = input.find('\n',i);
-            string tmp = input.substr(i,end-i);
+            string str = input.substr(i,end - i);
             i = end + 1;
-            pair<int,int> eme = make_pair(tmp.size(),tab);
-            tab = 0;
-            while (i < input.size() && input[i] == '\t')
-            {
-                i++, tab++;
-            }
-            while (!sk.empty() && sk.top().second >= eme.second)
-            {
-                cur -= sk.top().first;
-                sk.pop();
-            }
-            if (sk.empty() || sk.top().second < eme.second)
-            {
-                cur += tmp.size();
-                sk.push(eme);
-            }
-            if (tmp.find('.') != -1) res = max(res,cur+(int)sk.size()-1);
+            vector<int> arr = {(int)str.size(),count};
+            count = 0;
+            while (i < input.size() && input[i] == '\t') i++, count++;
+            while (stk.size() && stk.top()[1] >= arr[1]) cur -= stk.top()[0], stk.pop();
+            if (stk.empty() || stk.top()[1] < arr[1]) cur += arr[0], stk.push(arr);
+            if (str.find('.') != -1) res = max(res,cur+(int)stk.size()-1);
         }
         return res;
     }
