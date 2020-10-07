@@ -25,7 +25,7 @@ public:
         sort(arr.begin(),arr.end());
         int i = 0, j = 0;
         while (j < arr.size())
-        {
+        { // 使用双指针的滑动窗口
             if ((arr[j] - arr[i]) < rad || abs(arr[j] - arr[i] - rad) < 0.0000001)
             {
                 sum = max(sum,j-i+1);
