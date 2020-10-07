@@ -18,7 +18,7 @@ public:
             if (dx == 0 && dy == 0) {count++; continue;}
             double ang = atan2(dy,dx);
             if (ang < 0) ang += 2 * 3.1415926;
-            //else if (dx < 0 && dy < 0) ang += 2 * 3.1415926;
+            if (ang < rad) arr.push_back(ang + 2 * 3.1415926);
             arr.push_back(ang);
         }
         
