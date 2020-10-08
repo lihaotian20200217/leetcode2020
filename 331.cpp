@@ -14,15 +14,15 @@ public:
         {
             if (sum == 0)//if (stk.empty())
             {
-                if (preorder[i] == ',') continue;
-                else if (preorder[i] == '#')
+                //if (preorder[i] == ',') continue;
+                if (preorder[i] == '#')
                 {
                     count--;
                     if (i != preorder.size()-1 && count < 0) return false;
                 }
-                else sum++;//else stk.push(preorder[i]);
+                else if (preorder[i] != ',') sum++;//else stk.push(preorder[i]);
             }
-            else
+            else 
             {
                 if (preorder[i] == ',')
                 {
