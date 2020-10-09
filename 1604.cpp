@@ -1,4 +1,4 @@
-/*
+<F12>/*
     LeetCode 1604
 */
 
@@ -13,7 +13,7 @@ public:
         for (int i = 0; i < keyName.size(); i++)
         {
             int a = (int)(keyTime[i][0] - '0') * 1000 + (int)(keyTime[i][1] - '0') * 100 + (int)(keyTime[i][3] - '0') * 10 + (int)(keyTime[i][4] - '0');
-            m[keyName[i]].push_back(a);
+            m[keyName[i]].emplace_back(a);
         }
         for (auto item : m)
         {
@@ -24,7 +24,7 @@ public:
                 {
                     if (!(item.second[i]/100-item.second[i-2]/100 > 1 || (item.second[i]/100-item.second[i-2]/100 == 1 && item.second[i]%100 > item.second[i-2]%100)))
                     {
-                        res.push_back(item.first);
+                        res.emplace_back(item.first);
                         break;
                     } 
                 }
