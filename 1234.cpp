@@ -45,14 +45,10 @@ public: // 'Q' 'w' 'E' 'R'
 		if (arr[len][0] == L && arr[len][1] == L && arr[len][2] == L) return 0;
 		while (i < j)
 		{
-			int q = arr[j][0] - arr[i][0];
-			int w = arr[j][1] - arr[i][1];
-			int e = arr[j][2] - arr[i][2];
-			int r = arr[j][3] - arr[i][3];
-			int q2 = arr[len][0] - q;
-			int w2 = arr[len][1] - w;
-			int e2 = arr[len][2] - e;
-			int r2 = arr[len][3] - r;
+			int q2 = arr[len][0] - arr[j][0] + arr[i][0];
+			int w2 = arr[len][1] - arr[j][1] + arr[i][1];
+			int e2 = arr[len][2] - arr[j][2] + arr[i][2];
+			int r2 = arr[len][3] - arr[j][3] + arr[i][3];
 			if (q2>L || w2>L || e2>L || r2>L)
 			{
 				j++;
