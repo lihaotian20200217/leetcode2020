@@ -10,7 +10,7 @@ public:
     int maximalNetworkRank(int n, vector<vector<int>>& roads) {
         unordered_map<int,vector<int>> M;
         map<vector<int>,int> Map;
-        int res = 0, cur = 0, id = 0;
+        int res = 0, cur = 0;
         for (int i = 0; i < roads.size(); i++)
         {
             M[roads[i][0]].push_back(roads[i][1]);
@@ -23,7 +23,6 @@ public:
             for (int j = i+1; j < n; j++)
             {
                 cur = M[i].size() + M[j].size();
-                //cout << cur << " " << i << " " << j << endl;
                 if (Map[{i,j}] != 0 || Map[{j,i}] != 0) cur--;
                 res = max(res,cur);
             }
