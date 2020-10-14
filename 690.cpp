@@ -7,23 +7,25 @@ using namespace std;
 
 class Solution {
 public:
-    int getImportance(vector<Employee*> employees, int id) {
-        for (auto ele : employees)
+    int solve(unordered_map<int,Employee*>& m, int id)
+    {
+        if (m[id]->subordinates.size() == 0) return m[id]->importance;
+        else
         {
-            if (ele->id == id)
+            for (auto ele : m[id]->subordinates)
             {
-                if (ele->subordinates.size() == 0) return ele->importance;
-                else
-                {
-                    for (auto ID : ele->subordinates)
-                    {
-                        ele->importance += getImportance(employees,ID);
-                    }
-                    return ele->importance;
-                }
-                
+                m[id]->importance += solve(m,ele);
             }
+            return m[id]->importance;
         }
-        return 0;
+    }
+    int getImportance(vector<Employee*> employees, int id)
+    {
+        unordered_map<int,Employee*> m;
+        for (int i = 0; i < employees.size(); i++)
+        {
+            m[employees[i]->id] = employees[i];
+        }
+        return solve(m,id);
     }
 };
