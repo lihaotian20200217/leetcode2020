@@ -45,7 +45,7 @@ class Trie
 class Solution
 {
     public:
-        bool dfs(Trie* ptr, int count, int start, string e)
+        bool dfs(Trie* ptr, int count, int start, string& e)
         {
             if (start >= e.size() && count > 1) return true;
             for (int i = start; i < e.size(); i++)
