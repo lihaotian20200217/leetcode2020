@@ -1,0 +1,18 @@
+向thread传递参数
+
+在创建thread object时可以向线程传递参数，默认情况下，参数会被拷贝到线程空间以供线程执行时存取，即使参数引用也是这样。
+
+情形1.
+void f(int i, std::string const& s);
+boost::thread t(f,3,"hello");
+f是函数，3和"hello"是它的参数。
+
+情形2.
+void f(int i, std::string const& s);
+void oops(int some_param)
+{
+	char buffer[1024];
+	sprintf(buffer,"%i",some_param);
+	boost::thread t(f,3,buffer);
+	t.detach();
+}
