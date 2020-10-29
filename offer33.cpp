@@ -30,7 +30,7 @@ bool function()
 			r = stk.top();
 			stk.pop();
 		}
-		stk.push(arr[i]);
+		stk.push(arr[i]);// 每一次压入当前位置下的根节点对应的右结点!
 	}
 	return true;
 }
