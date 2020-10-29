@@ -25,7 +25,7 @@ bool function()
 		/*
 		如果是右子树的话我们一直更新根节点！
 		*/
-		while (!stk.empty() && arr[i] > stk.top())
+		while (!stk.empty() && arr[i] < stk.top())
 		{
 			r = stk.top();
 			stk.pop();
