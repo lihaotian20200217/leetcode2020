@@ -28,19 +28,17 @@ class Solution
 		}
 		void add(int x)
 		{
-			while (x <= n)
+			for (int i = x; i <= n; i += lowbit(i))
 			{
-				bit[x] += 1;
-				x += lowbit(x);
+				bit[i] += 1;
 			}
 		}
 		int getSum(int x)
 		{
 			int ans = 0;
-			while (x > 0)
+			for (int i = x; i; i -= lowbit(i))
 			{
-				ans += bit[x];
-				x -= lowbit(x);
+				ans += bit[i];
 			}
 			return ans;
 		}
