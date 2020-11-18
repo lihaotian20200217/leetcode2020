@@ -55,3 +55,46 @@ int main()
 	cout << A.kthSmallest(mat,5) << endl;
 	return 0;
 }
+
+
+// 补充
+
+class Solution
+{
+	public:
+		vector<vector<int>> block;
+		void dfs(int mid, int depth, int sum, int& num, int& k)
+		{
+			if (sum > mid || depth == block.size() || num > k) return;
+			dfs(mid,depth+1,sum,num,k);
+			for (int i = 1; i < block[depth].size(); i++)
+			{
+				if (sum + block[depth][i] - block[depth][0] <= mid)
+				{
+					num++;
+					dfs(mid,depth+1,sum+block[depth][i]-block[depth][0],num,k);
+				}
+				else break;
+			}
+		}
+		int kthSmallest(vector<vector<int>>& mat, int k)
+		{
+			block = mat;
+			int left = 0, right = 0, init = 0, num = 0;
+			for (int i = 0; i < mat.size(); i++)
+			{
+				left += mat[i][0];
+				right += mat[i].back();
+			}
+			init = left;
+			while (left < right)
+			{
+				int mid = (left + right) >> 1;
+				num = 1;
+				dfs(mid,0,init,num,k);
+				if (num >= k) right = mid;
+				else left = mid + 1;
+			}
+			return left;
+		}
+};
