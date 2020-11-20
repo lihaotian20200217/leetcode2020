@@ -21,20 +21,21 @@ class Solution
 		/*
 			dp[i]表示截止到i子序列的最大和
 			dp[i] = max(dp[i-j],nums[i]); j = 1,2...k
-			直接遍历浪费时间所以用单调栈维护最大值的索引
+			直接遍历浪费时间所以用单调队列维护最大值的索引
 		*/
 		int constrainedSubsetSum(vector<int>& nums, int k)
 		{
 			int len = nums.size();
 			vector<int> dp(len,0);
 			dp[0] = nums[0];
+			deque<int> que;
+			que.push_back(0);
 			for (int i = 1; i < len; i++)
 			{
-				dp[i] = nums[i];
-				for (int j = 1; j <= min(k,i); j++)
-				{
-					dp[i] = max(dp[i],dp[i-j]+nums[i]);
-				}
+				dp[i] = max(nums[i],dp[que.front()]+nums[i]);
+				if (i-que.front() == k) que.pop_front();
+				while (!que.empty() && dp[que.back()] < dp[i]) que.pop_back();
+				que.push_back(i);
 			}
 			sort(dp.begin(),dp.end());
 			return dp[len-1];
