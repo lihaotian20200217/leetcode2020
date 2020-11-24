@@ -36,9 +36,8 @@ class Solution {
 	public:
 		static bool cmp(const vector<int>& p1, const vector<int>& p2)
 		{
-			if ((p1[1]-p1[0]) > (p2[1]-p2[0])) return true;
-			else if ((p1[1]-p1[0]) == (p2[1]-p2[0])) return p1[1] >= p2[1];
-			return false;
+			if (p1[1]-p1[0] != p2[1]-p2[0]) return (p1[1]-p1[0]) > (p2[1]-p2[0]);
+			return p1[1] > p2[1];
 		}
 		int minimumEffort(vector<vector<int>>& tasks) {
 			int res = 0, num = 0;
