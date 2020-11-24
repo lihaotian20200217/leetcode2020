@@ -34,7 +34,7 @@ minimumi 是开始第 i 个任务前需要达到的最低能量。
 
 class Solution {
 	public:
-		static bool cmp(const vector<int>& p1, const vector<int>& p2)
+		static bool cmp(vector<int>& p1, vector<int>& p2)
 		{
 			if (p1[1]-p1[0] != p2[1]-p2[0]) return (p1[1]-p1[0]) > (p2[1]-p2[0]);
 			return p1[1] > p2[1];
