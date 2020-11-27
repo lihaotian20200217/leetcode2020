@@ -19,16 +19,17 @@ using namespace std;
 class Solution {
 	public:
 		int minOperations(vector<int>& nums, int x) {
-			int sum = 0, res = INT_MIN;
-			vector<int> arr{0};
-			for (int i = 0; i < nums.size(); i++)
+			int sum = 0, res = INT_MIN, len = nums.size();
+			vector<int> arr(len+1,0);
+			for (int i = 0; i < len; i++)
 			{
-				arr.push_back(arr.back()+nums[i]);
+				//arr.push_back(arr.back()+nums[i]);
+				arr[i+1] = arr[i] + nums[i];
 			}
 			if (arr.back() < x) return -1;
 			int id = 0;
 			sum = arr.back() - x;
-			for (int i = 1; i < arr.size(); i++)
+			for (int i = 1; i < len+1; i++)
 			{		
 				while (arr[i] - arr[id] >= sum)
 				{
@@ -42,7 +43,7 @@ class Solution {
 				}	
 			}
 			if (res == INT_MIN) return -1;
-			return nums.size() - res;
+			return len - res;
 		}
 };
 
